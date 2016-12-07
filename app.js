@@ -6,6 +6,7 @@ var app = express();
 var port = 3000;
 
 Genre = require('./models/genre.js');
+Book = require('./models/book.js');
 
 //Connect to mongoose
 mongoose.connect('mongodb://localhost/bookstore')
@@ -22,6 +23,15 @@ app.get('/api/genres', function(req, res){
       throw err;
     }
     res.json(genres);
+  });
+});
+
+app.get('/api/books', function(req, res){
+  Book.getBooks(function(err, books){
+    if(err){
+      throw err;
+    }
+    res.json(books);
   });
 });
 

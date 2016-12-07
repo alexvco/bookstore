@@ -17,5 +17,5 @@ var Genre = module.exports = mongoose.model('Genre', genreSchema);
 
 //function to get genres (since this needs to be accessible from outside we need to do module.exports to the getGenres function)
 module.exports.getGenres = function(callback, limit){
-  Genre.find(callback).limit(limit);
+  Genre.find(callback).limit(limit); //if no args are passed for find or limit, it will return all like db.genres.find().limit();
 }
