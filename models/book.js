@@ -44,3 +44,8 @@ var Book = module.exports = mongoose.model('Book', bookSchema);
 module.exports.getBooks = function(callback, limit){
   Book.find(callback).limit(limit); //if no args are passed for find or limit, it will return all like db.genres.find().limit();
 }
+
+module.exports.getBookById = function(id, callback){
+  Book.findById(id, callback); //findById is a mongoose method
+}
+

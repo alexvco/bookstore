@@ -35,5 +35,14 @@ app.get('/api/books', function(req, res){
   });
 });
 
+app.get('/api/books/:id', function(req, res){
+  Book.getBookById(req.params.id, function(err, book){
+    if(err){
+      throw err;
+    }
+    res.json(book);
+  });
+});
+
 app.listen(port);
 console.log('Server running on port' + port);
