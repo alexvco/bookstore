@@ -49,3 +49,12 @@ module.exports.getBookById = function(id, callback){
   Book.findById(id, callback); //findById is a mongoose method
 }
 
+// Add Book
+module.exports.addBook = function(book, callback){
+  Book.create(book, callback);
+}
+
+
+
+
+
