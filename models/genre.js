@@ -33,3 +33,9 @@ module.exports.updateGenre = function(id, genre, options, callback){
   };
   Genre.findOneAndUpdate(query, update, options, callback); //findOneAndUpdate is a mongoose function
 }
+
+// Delete Genre
+module.exports.removeGenre = function(id, callback){
+  var query = {_id: id}; // _id because that is how it is stored in the db
+  Genre.remove(query, callback); //create is a mongoose function
+}

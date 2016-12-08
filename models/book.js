@@ -73,4 +73,10 @@ module.exports.updateBook = function(id, book, options, callback){
   Book.findOneAndUpdate(query, update, options, callback); //findOneAndUpdate is a mongoose function
 }
 
+// Delete Book
+module.exports.removeBook = function(id, callback){
+  var query = {_id: id}; // _id because that is how it is stored in the db
+  Book.remove(query, callback); //create is a mongoose function
+}
+
 

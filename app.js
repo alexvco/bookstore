@@ -24,11 +24,14 @@ var port = 3000;
 //===================================================
 // Routes
 //===================================================
+
   app.get('/', function(req, res){
     res.send('Please use /api/books');
   });
 
-  //=====Genres=====//
+
+//======================Genres======================//
+
 
   //This is index for genres
   app.get('/api/genres', function(req, res){
@@ -65,9 +68,23 @@ var port = 3000;
     });
   });
 
-  //=====Books=====//
+  //This is delete for genres
+  app.delete('/api/genres/:id', function(req, res){
+    var id = req.params.id;
 
-  // This is like the index page for books controller in rails
+    Genre.removeGenre(id, function(err, genre){
+      if(err){
+        throw err;
+      }
+      res.json(genre);
+    });
+  });
+
+
+//======================Books======================//
+
+
+  //INDEX
   app.get('/api/books', function(req, res){
     Book.getBooks(function(err, books){
       if(err){
@@ -77,7 +94,7 @@ var port = 3000;
     });
   });
 
-  // This is like the show page for books controller in rails
+  //SHOW
   app.get('/api/books/:id', function(req, res){
     Book.getBookById(req.params.id, function(err, book){
       if(err){
@@ -87,7 +104,7 @@ var port = 3000;
     });
   });
 
-  //This is create for books
+  //POST=CREATE
   app.post('/api/books', function(req, res){
     var book = req.body;
 
@@ -99,7 +116,7 @@ var port = 3000;
     });
   });
 
-  //This is update for books
+  //PUT=UPDATE
   app.put('/api/books/:id', function(req, res){
     var id = req.params.id;
     var book = req.body;
@@ -112,5 +129,22 @@ var port = 3000;
     });
   });
 
+  //DELETE=DESTROY
+  app.delete('/api/books/:id', function(req, res){
+    var id = req.params.id;
+
+    Book.removeBook(id, function(err, book){
+      if(err){
+        throw err;
+      }
+      res.json(book);
+    });
+  });
+
+//===================================================
+// Server
+//===================================================
+
   app.listen(port);
   console.log('Server running on port' + port);
+
