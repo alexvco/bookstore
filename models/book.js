@@ -57,6 +57,9 @@ module.exports.addBook = function(book, callback){
 // Update Book
 module.exports.updateBook = function(id, book, options, callback){
   var query = {_id: id}; // _id because that is how it is stored in the db
+
+  //note that if the user does not include all these fields in his update, they will all be null
+  //usually this is not an issue because the form will be pre-filled with all their data that will be modified/updated.
   var update = {
     title: book.title, 
     genre: book.genre, 
@@ -65,10 +68,9 @@ module.exports.updateBook = function(id, book, options, callback){
     publisher: book.publisher, 
     pages: book.pages, 
     image_url: book.image_url, 
-    buy_url: book.buy_url 
+    buy_url: book.buy_url
   };
   Book.findOneAndUpdate(query, update, options, callback); //findOneAndUpdate is a mongoose function
 }
-
 
 
