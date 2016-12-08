@@ -52,6 +52,19 @@ var port = 3000;
     });
   });
 
+  //This is update for genres
+  app.put('/api/genres/:id', function(req, res){
+    var id = req.params.id;
+    var genre = req.body;
+
+    Genre.updateGenre(id, genre, {}, function(err, genres){
+      if(err){
+        throw err;
+      }
+      res.json(genre);
+    });
+  });
+
   //=====Books=====//
 
   // This is like the index page for books controller in rails
@@ -79,6 +92,19 @@ var port = 3000;
     var book = req.body;
 
     Book.addBook(book, function(err, books){
+      if(err){
+        throw err;
+      }
+      res.json(book);
+    });
+  });
+
+  //This is update for books
+  app.put('/api/books/:id', function(req, res){
+    var id = req.params.id;
+    var book = req.body;
+
+    Book.updateBook(id, book, {}, function(err, books){
       if(err){
         throw err;
       }

@@ -22,5 +22,14 @@ module.exports.getGenres = function(callback, limit){
 
 // Add Genre
 module.exports.addGenre = function(genre, callback){
-  Genre.create(genre, callback);
+  Genre.create(genre, callback); //create is a mongoose function
+}
+
+// Update Genre
+module.exports.updateGenre = function(id, genre, options, callback){
+  var query = {_id: id}; // _id because that is how it is stored in the db
+  var update = {
+    name: genre.name //you will need to pass all params for genre (luckily this has only one)
+  };
+  Genre.findOneAndUpdate(query, update, options, callback); //findOneAndUpdate is a mongoose function
 }
